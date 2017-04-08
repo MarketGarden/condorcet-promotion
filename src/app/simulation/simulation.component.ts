@@ -33,6 +33,7 @@ const TEST_ELECTION : Election = {
       ]
 }
 
+const JSON_PERMANENT_LINK_KEY ="json-raw";
 
 @Component({
   selector: 'app-simulation',
@@ -54,6 +55,8 @@ export class SimulationComponent implements OnInit {
 
   }
 
+  
+
   simulation : Simulation;
   indexSamples : number = 1;
 
@@ -70,7 +73,7 @@ export class SimulationComponent implements OnInit {
   }
   
   public get permanentLink() : string{
-    return  environment.virtualPath +"from-data/"+encodeURIComponent(JSON.stringify(this.simulation.request ));
+    return  environment.virtualPath + JSON_PERMANENT_LINK_KEY + "/" + encodeURIComponent(JSON.stringify(this.simulation.request ));
   }
 
   public get compactLink() : string {
@@ -98,7 +101,7 @@ export class SimulationComponent implements OnInit {
   public loadFromLink() : boolean {
 
     let a= this.document.location.href.split("/");
-    if (a.length>3 && a[a.length-2]=='from-data'){
+    if (a.length>3 && a[a.length-2]==JSON_PERMANENT_LINK_KEY){
       console.debug(decodeURIComponent(a[a.length -1]));
       let json  : SimulationRequest=JSON.parse(decodeURIComponent(a[a.length -1]));
       console.debug(json);
