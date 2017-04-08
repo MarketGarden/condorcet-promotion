@@ -14,8 +14,7 @@
      <button class="delete" (click)="deleteVote(vote)">x</button>
     <h3>Electeurs - {{vote.name}} </h3>
     <div><label>nom : </label><input [(ngModel)]="vote.name" /></div>
-    <div>nombre : <input [(ngModel)]="vote.quantity" /></div>
-    
+    <div>nombre : <input [(ngModel)]="vote.quantity" (ngModelChange)="onChangeSort()" /></div>
       <ul class="list-group" dnd-sortable-container [sortableData]="vote.candidates" [dropZones]="[index]" >
             <li *ngFor="let candidate of vote.candidates; let i = index"
             class="list-group-item"
