@@ -1,3 +1,51 @@
+<h1>{{simulation.title}}</h1>
+
+<h2>Les candidats de la simulation "{{simulation.elections.name}}"</h2>
+<a href="/from-data/{{permanentLink}}">Lien permanent</a>
 <p>
-  simulation works!
+    <span *ngFor="let candidate of simulation.elections.candidates;let last = last;let first = first">
+        {{candidate.name}}<span *ngIf="!last">,</span> <span *ngIf="last">.</span>
+    </span>
 </p>
+<h2>Simuler des votes</h2>
+<button (click)="onAddVote()">Ajouter groupe de vote</button>
+<div>
+    <div class="vote" *ngFor="let vote of simulation.votes;let index=index">
+     <button class="delete" (click)="deleteVote(vote)">x</button>
+    <h3>Electeurs - {{vote.name}} </h3>
+    <div><label>nom : </label><input [(ngModel)]="vote.name" /></div>
+    <div>nombre : <input [(ngModel)]="vote.quantity" /></div>
+    
+      <ul class="list-group" dnd-sortable-container [sortableData]="vote.candidates" [dropZones]="[index]" >
+            <li *ngFor="let candidate of vote.candidates; let i = index"
+            class="list-group-item"
+            dnd-sortable
+            [sortableIndex]="i"
+            (onDropSuccess)="onChangeSort()"
+            >
+                <input [(ngModel)]="candidate.enabled" type="checkbox" (ngModelChange)="onChangeSort()"/>
+                {{candidate.candidate.name}}
+            </li>
+        </ul>
+    </div>
+</div>
+<h2>Le Classement</h2>
+<div  >
+    <ul>
+        <li *ngFor="let result of simulation.results" >{{result.score}} <b>{{result.candidate.name}}</b>
+            <span *ngFor="let looser of result.winAgainst;let last = last;let first = first">
+                <span *ngIf="first">(</span> <u>{{looser.name}}</u> <span *ngIf="!last">, </span> <span *ngIf="last">)</span></span>
+        </li>
+    </ul>
+<div>
+
+<h2>Détails des duels</h2>
+<div >
+    <ul>
+        <li *ngFor="let duel of simulation.duels" >
+            <span [ngClass]="{'win': duel.ticWin, 'loose': duel.tacWin}">{{duel.tic.name}} - {{duel.ticScore}}</span> / 
+            <span [ngClass]="{'win': duel.tacWin, 'loose': duel.ticWin}">{{duel.tacScore}} - {{duel.tac.name}}</span>
+            
+        </li>
+    </ul>
+</div>
