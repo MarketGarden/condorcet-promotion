@@ -37,17 +37,15 @@ const TEST_ELECTION : Election = {
   templateUrl: './simulation.component.html',
   styleUrls: ['./simulation.component.css']
 })
-
 export class SimulationComponent implements OnInit {
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
+  constructor(@Inject(DOCUMENT) private document: any) {
 
    if(!this.loadFromLink()){
     this.simulation = new Simulation(
-      SimulationRequest.defaultFactory(TEST_ELECTION)
+      SimulationRequest.defaultFactory(DEFAULT_ELECTION)
     );
    }
-
   }
 
   ngOnInit() {
@@ -83,7 +81,6 @@ export class SimulationComponent implements OnInit {
 
     let votesString = [];
     for (let vote of this.simulation.request.votes){
-      "name:10>1>2>3-2"
       let voteString = vote.quantity + ":"+ vote.name
       for(let candidate of vote.candidates){
         voteString += candidate.enabled ? ">" : "-";
@@ -114,6 +111,7 @@ export class SimulationComponent implements OnInit {
         }
       }
       this.simulation = new Simulation(json);
+      
       return true;
     }
     else{
