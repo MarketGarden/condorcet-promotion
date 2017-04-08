@@ -1,7 +1,7 @@
 <h1>Simulation d'une élection avec la methode de Condorcet</h1>
 
 <h2>Les candidats de la simulation "{{simulation.elections.name}}"</h2>
-<a href="/from-data/{{permanentLink}}">Lien permanent</a>
+<a href="{{permanentLink}}">Lien permanent</a>
 <p>
     <span *ngFor="let candidate of simulation.elections.candidates;let last = last;let first = first">
         {{candidate.name}}<span *ngIf="!last">,</span> <span *ngIf="last">.</span>

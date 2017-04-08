@@ -1,7 +1,9 @@
+import { environment } from '../../environments/environment';
 import { CandidateVote, Election, Simulation, SimulationRequest, Vote } from '../models';
 import { Inject, Component, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { List } from "linqts";
+
 
 const DEFAULT_ELECTION : Election =  {
     name : "Election présidentielle 2017",
@@ -68,7 +70,7 @@ export class SimulationComponent implements OnInit {
   }
   
   public get permanentLink() : string{
-    return encodeURIComponent(JSON.stringify(this.simulation.request ));
+    return  environment.virtualPath +"from-data/"+encodeURIComponent(JSON.stringify(this.simulation.request ));
   }
 
   public get compactLink() : string {
@@ -111,7 +113,6 @@ export class SimulationComponent implements OnInit {
         }
       }
       this.simulation = new Simulation(json);
-      
       return true;
     }
     else{
