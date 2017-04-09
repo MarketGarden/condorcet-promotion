@@ -6,6 +6,15 @@
   position:relative;
 }
 
+.candidate {
+    background: ghostwhite;
+    padding: 3mm;
+    display: inline-block;
+    margin: 3mm;
+    position:relative;
+    padding-right: 10mm;
+}
+
 .win { font-weight: bold}
 .loose { font-style: italic}
 

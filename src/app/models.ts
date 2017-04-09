@@ -157,7 +157,7 @@ export class Simulation {
         }
     }
 
-    this.duels.sort((a,b)=>  a.distance - b.distance)
+    this.duels.sort((a,b)=>  Math.abs(a.distance - b.distance));
   }
 
   updateResults(){
@@ -170,7 +170,23 @@ export class Simulation {
         result.winAgainst.push(...winAgainst);
     }
 
-    this.results.sort(x=> x.winAgainst.length);
+    //this.results.sort(x=> x.score);
+  }
+
+  public deleteCandidate(candidate: Candidate) : void {
+    for(let vote of this.votes){
+      vote.candidates.splice(vote.candidates.findIndex(x=> x.candidate==candidate),1);
+    }
+
+    for(let duel of this.duels.filter(x=> x.tac== candidate || x.tic==candidate)){
+            let i = this.duels.indexOf(duel);
+            this.duels.splice(i,1);
+    }
+    
+    this.results.splice(this.results.findIndex(x=> x.candidate == candidate), 1);
+    this.elections.candidates.splice(this.elections.candidates.indexOf(candidate),1);
+
+    this.update();
   }
 
   public deleteVote(vote : Vote){
@@ -198,5 +214,20 @@ export class Simulation {
       this.votes.push(newVote);
 
       this.update();   
+  }
+
+  public addCandidate(candidateName: string){
+    let added = {name : candidateName};
+    
+    for(let vote of this.votes){
+      vote.candidates.push({candidate: added, enabled : false});
+    }
+
+    for(let candidate of this.elections.candidates){
+      this.duels.push(new Duel(candidate, added));
+    }
+    this.results.push(new CandidateResult(added));
+    this.elections.candidates.push(added);
+    this.update();
   }
 }

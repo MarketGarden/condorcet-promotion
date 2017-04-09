@@ -1,5 +1,5 @@
 import { environment } from '../../environments/environment';
-import { CandidateVote, Election, Simulation, SimulationRequest, Vote } from '../models';
+import { Candidate, CandidateVote, Election, Simulation, SimulationRequest, Vote } from '../models';
 import { Inject, Component, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { List } from "linqts";
@@ -55,17 +55,24 @@ export class SimulationComponent implements OnInit {
 
   }
 
-  
-
   simulation : Simulation;
-  indexSamples : number = 1;
-
+  
   public onAddVote() : void{
-    this.simulation.addVote("Sample " + (this.simulation.votes.length+1));
+    this.simulation.addVote("Electeurs " + (this.simulation.votes.length+1));
+  }
+
+
+
+  public onAddCandidate(){
+    this.simulation.addCandidate("Candidat " + (this.simulation.elections.candidates.length+1));
   }
 
   public onChangeSort() : void{
       this.simulation.update();
+  }
+
+  public deleteCandidate(candidate: Candidate) : void {
+    this.simulation.deleteCandidate(candidate);
   }
 
   public deleteVote(vote : Vote) : void{
