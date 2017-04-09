@@ -1,6 +1,6 @@
 # Condoret Promotion
 
-##Draft released to GitHubpage
+## Online Simulator released to GitHubpage
 
 Watch the Web UI :
 [Condorcet Simulator](https://marketgarden.github.io/condorcet-promotion/)
