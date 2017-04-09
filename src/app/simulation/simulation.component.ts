@@ -6,32 +6,10 @@ import { List } from "linqts";
 
 
 const DEFAULT_ELECTION : Election =  {
-    name : "Election présidentielle 2017",
-    candidates  : [
-      {name:"François Fillon"},
-      {name:"Benoît Hamon"},
-      {name:"Emmanuel Macron"},
-      {name:"Marine Le Pen"},
-      {name:"Jean Luc Melenchon"},
-      {name:"Jacques Cheminade"},
-      {name:"Jean Lassalle"},
-      {name:"Nathalie Arthaud"},
-      {name:"Philippe Poutou"},
-      {name:"François Asselineau"},
-      {name:"Nicolas Dupont Aignan"}
-      ], 
+    name : "Mon election",
+    candidates  : [], 
   }
 
-const TEST_ELECTION : Election = {
-      name : "Election présidentielle 2017",
-    candidates  : [
-      {name:"François Fillon"},
-      {name:"Benoît Hamon"},
-      {name:"Emmanuel Macron"},
-      {name:"Marine Le Pen"},
-      {name:"Jean Luc Melenchon"},
-      ]
-}
 
 const JSON_PERMANENT_LINK_KEY ="json-raw";
 
