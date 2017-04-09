@@ -1,8 +1,9 @@
 param($ghpagesPath="..\condoret-promotion-github")
 
+&ng build --prod
+
 $ghpagesPath = Resolve-Path $ghpagesPath;
 $WebpackPath = "$PsscriptRoot\dist"
-
 
 
 ls "$ghpagesPath\*" | % {
@@ -10,7 +11,7 @@ ls "$ghpagesPath\*" | % {
     git --git-dir="$ghpagesPath"  rm $_.fullname
 }
 
-#&ng build --prod
+
 
 rm "$ghpagesPath\*"
 write-host "ghpagesPath cleaned"
@@ -25,6 +26,3 @@ ls "$ghpagesPath\*" | % {
     git --git-dir="$ghpagesPath"  rm $_.fullname
 }
 git --git-dir="$ghpagesPath" commit -m "release WebUI"
-
-
-cd $PsscriptRoot
