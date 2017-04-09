@@ -2,11 +2,11 @@
 <p>Pour garder/partager les données de la simulation utilisez <a href="{{permanentLink}}">le lien permanent</a>.
 <span>Notez que rafraichir la page annulera les dernières modifications.</span>
 </p>
-<h2>Les candidats de la simulation "<input style="font-size: 16pt;width: auto" [(ngModel)]="simulation.elections.name" />"</h2>
+<h2>Les candidats de la simulation "<input style="font-size: 16pt" appElastischInput [(ngModel)]="simulation.elections.name" />"</h2>
  <p><button (click)="onAddCandidate()">Ajouter candidat</button></p>
     
         <div class="candidate" *ngFor="let candidate of simulation.elections.candidates;">
-            <input [(ngModel)]="candidate.name"  /><button class="delete" (click)="deleteCandidate(candidate)">x</button>
+            <input [(ngModel)]="candidate.name" appElastischInput /><button class="delete" (click)="deleteCandidate(candidate)">x</button>
         </div>
     
    

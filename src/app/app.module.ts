@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 import { DndModule } from 'ng2-dnd';
 import { AppComponent } from './app.component';
 import { SimulationComponent } from './simulation/simulation.component';
+import { ElastischInputDirective } from './elastisch-input.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SimulationComponent
+    SimulationComponent,
+    ElastischInputDirective
   ],
   imports: [
     BrowserModule,
