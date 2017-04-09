@@ -1,4 +1,14 @@
-# CondoretPromotion
+# Condoret Promotion
+
+##Draft released to GitHubpage
+
+Watch the Web UI :
+(https://marketgarden.github.io/condorcet-promotion/)
+
+
+permanent link with "Election Présidentielle 2017" :(https://marketgarden.github.io/condorcet-promotion/json-raw/%7B%22election%22%3A%7B%22name%22%3A%22Election%20pr%C3%A9sidentielle%202017%22%2C%22candidates%22%3A%5B%7B%22name%22%3A%22Fran%C3%A7ois%20Fillon%22%7D%2C%7B%22name%22%3A%22Beno%C3%AEt%20Hamon%22%7D%2C%7B%22name%22%3A%22Emmanuel%20Macron%22%7D%2C%7B%22name%22%3A%22Marine%20Le%20Pen%22%7D%2C%7B%22name%22%3A%22Jean%20Luc%20Melenchon%22%7D%2C%7B%22name%22%3A%22Jacques%20Cheminade%22%7D%2C%7B%22name%22%3A%22Jean%20Lassalle%22%7D%2C%7B%22name%22%3A%22Nathalie%20Arthaud%22%7D%2C%7B%22name%22%3A%22Philippe%20Poutou%22%7D%2C%7B%22name%22%3A%22Fran%C3%A7ois%20Asselineau%22%7D%2C%7B%22name%22%3A%22Nicolas%20Dupont%20Aignan%22%7D%5D%7D%2C%22votes%22%3A%5B%5D%7D)
+
+# Developement with Angular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
