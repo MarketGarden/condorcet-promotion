@@ -1,3 +1,4 @@
+import { forEach } from '@angular/router/src/utils/collection';
 import { deserializeSummaries } from '@angular/compiler/src/aot/summary_serializer';
 import { serialize } from '@angular/compiler/src/i18n/serializers/xml_helper';
 
@@ -13,15 +14,53 @@ export class Election{
 }
 
 
-export class CandidateVote {
-  candidate : Candidate;
-  enabled : boolean;
+export class Vote {
+
+    ranking : Array<Rank> = [];
+
+    addRank(){
+        this.ranking.push({
+        candidates : [],
+        rank : this.ranking.length
+      });
+    }
+
+    deleteRank(){
+      let index = this.ranking.findIndex(x=> x.candidates.length==0);
+      if(index>=0){
+        this.ranking.splice(index, 1);
+
+        for(let i = 0; i<this.ranking.length;i++){
+            this.ranking[i].rank = i;
+        }
+      }
+    }
+
+    addCandidate(candidate : Candidate) : void {
+      //let last = this.ranking.length-1;
+      this.ranking[0].candidates.push(candidate); 
+    }
+    
+    deleteCandidate(candidate : Candidate):void{
+      for(let rank of this.ranking) {
+        let index = rank.candidates.findIndex(x=> x==candidate);
+        if(index>=0){
+          rank.candidates.splice(index,1);
+        }
+      }
+    }
+
+    constructor(public name: string,public quantity : number, candidates : Array<Candidate> ){
+      for(let candidate of candidates){
+       this.addRank();
+        this.addCandidate(candidate);
+      }
+    }
 }
 
-export class Vote {
-    name: string;
-    candidates : Array<CandidateVote>;
-    quantity : number;
+export class Rank{
+  candidates : Array<Candidate>;
+  rank : number;
 }
 
 export class Duel {
@@ -137,27 +176,24 @@ export class Simulation {
       duel.resetScores();
 
         for(let vote of this.votes){
-            let vc = vote.candidates;
-            let tic = vc.find(x=>x.candidate == duel.tic);
-            let ticRank = vc.indexOf(tic);
-
-            let tac = vc.find(x=>x.candidate == duel.tac);
-            let tacRank = vc.indexOf(tac);
+            let ranking = vote.ranking;
+            let tic = ranking.find(x=>x.candidates.find( y=> y == duel.tic)!=undefined);
+            let tac = ranking.find(x=>x.candidates.find( y=> y == duel.tac)!=undefined);
             
-            if ((tic.enabled && tac.enabled && ticRank < tacRank) || (tic.enabled && !tac.enabled)){
+            if (tic.rank < tac.rank){
               duel.ticScore += vote.quantity;
-              
             }
-            else if ((tac.enabled && tic.enabled && tacRank < ticRank) || (tac.enabled && !tic.enabled)){
+            else if (tac.rank < tic.rank){
               duel.tacScore += vote.quantity;
             }
             else{
-
+              // egality => nop
             }
         }
     }
 
     this.duels.sort((a,b)=>  Math.abs(a.distance - b.distance));
+
   }
 
   updateResults(){
@@ -174,8 +210,9 @@ export class Simulation {
   }
 
   public deleteCandidate(candidate: Candidate) : void {
-    for(let vote of this.votes){
-      vote.candidates.splice(vote.candidates.findIndex(x=> x.candidate==candidate),1);
+    for(let vote of this.votes) {
+      vote.deleteCandidate(candidate);
+      vote.deleteRank();
     }
 
     for(let duel of this.duels.filter(x=> x.tac== candidate || x.tic==candidate)){
@@ -195,24 +232,11 @@ export class Simulation {
     this.update();
   }
 
+
+
   public addVote(name : string) : void{
-      let newVote : Vote = {
-          candidates : [],
-          name : name,
-          quantity : 10,
-      };
-
-      for(let c of this.elections.candidates){
-        let cv : CandidateVote = {
-          candidate : c,
-          enabled : true,
-        }
-        newVote.candidates.push(cv);
-        
-      }
-      
+      let newVote : Vote = new Vote(name,1,this.elections.candidates);    
       this.votes.push(newVote);
-
       this.update();   
   }
 
@@ -220,7 +244,8 @@ export class Simulation {
     let added = {name : candidateName};
     
     for(let vote of this.votes){
-      vote.candidates.push({candidate: added, enabled : false});
+      vote.addRank();
+      vote.addCandidate(added);
     }
 
     for(let candidate of this.elections.candidates){

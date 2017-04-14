@@ -1,5 +1,5 @@
 import { environment } from '../../environments/environment';
-import { Candidate, CandidateVote, Election, Simulation, SimulationRequest, Vote } from '../models';
+import { Candidate, Election, Simulation, SimulationRequest, Vote } from '../models';
 import { Inject, Component, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { List } from "linqts";
@@ -73,9 +73,12 @@ export class SimulationComponent implements OnInit {
     let votesString = [];
     for (let vote of this.simulation.request.votes){
       let voteString = vote.quantity + ":"+ vote.name
-      for(let candidate of vote.candidates){
-        voteString += candidate.enabled ? ">" : "-";
-        voteString += this.simulation.request.election.candidates.indexOf(candidate.candidate);
+      for(let rank of vote.ranking){
+        voteString += ">";
+        for(let candidate of rank.candidates){
+          //TODO impl
+        }
+
       }
       votesString.push(voteString);
     }
@@ -88,20 +91,32 @@ export class SimulationComponent implements OnInit {
 
     let a= this.document.location.href.split(JSON_PERMANENT_LINK_KEY);
     if (a.length==2){
-      console.debug(decodeURIComponent(a[a.length -1]));
+      console.debug("decoding",decodeURIComponent(a[a.length -1]));
       let json  : SimulationRequest=JSON.parse(decodeURIComponent(a[a.length -1]));
-      console.debug(json);
-      let result =SimulationRequest.defaultFactory(json.election);
-      let votes = new List<Vote>(json.votes);
-
+      console.debug("loading",json);
+      let result = SimulationRequest.defaultFactory(json.election);
+      
       //relink correctly instances of candidates
+
+      let newvotes :Array<Vote>= [];    
+
       for(let vote of json.votes){
-        for(let choise of vote.candidates){
-            let candidate =json.election.candidates.find(x=>x.name == choise.candidate.name);
-            choise.candidate = candidate;
+        let newvote = new Vote(vote.name, 0, []);
+
+        for(let rank of vote.ranking){
+          let updated :Array<Candidate>= [];
+          for(let candidate of rank.candidates){
+              let newcandidate =json.election.candidates.find(x=>x.name == candidate.name);
+              updated.push(newcandidate);
+          }
+          rank.candidates = updated;
         }
+        newvote.ranking = vote.ranking;
+        newvotes.push(newvote);
       }
+      json.votes = newvotes;
       this.simulation = new Simulation(json);
+      console.debug("loaded",this.simulation);
       return true;
     }
     else{

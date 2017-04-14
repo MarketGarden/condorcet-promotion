@@ -15,6 +15,21 @@
     padding-right: 10mm;
 }
 
+
+ul.candidatevote{
+    padding: 3mm;
+    margin: 0;
+    list-style-type: none;
+}
+
+.candidatevote li{
+    background: gray;
+    padding: 1mm;
+    margin: 1mm;
+    margin-bottom:0; 
+    color: black;
+}
+
 .win { font-weight: bold}
 .loose { font-style: italic}
 
@@ -26,4 +41,9 @@
     line-height: 3mm;
     position: absolute;
     right: 3mm;
+}
+
+.rank{
+    min-height: 5mm;
+    border: black solid 0.1mm;
 }

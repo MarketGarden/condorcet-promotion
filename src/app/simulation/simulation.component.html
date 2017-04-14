@@ -17,32 +17,36 @@
 <button (click)="onAddVote()">Ajouter groupe de vote</button>
 <div>
     <div class="vote" *ngFor="let vote of simulation.votes;let index=index">
-     <button class="delete" (click)="deleteVote(vote)">x</button>
-    <h3>Electeurs - {{vote.name}} </h3>
-    <div><label>nom : </label><input [(ngModel)]="vote.name" /></div>
-    <div>nombre : <input [(ngModel)]="vote.quantity" (ngModelChange)="onChangeSort()" /></div>
-      <ul class="list-group" dnd-sortable-container [sortableData]="vote.candidates" [dropZones]="[index]" >
-            <li *ngFor="let candidate of vote.candidates; let i = index"
-            class="list-group-item"
-            dnd-sortable
-            [sortableIndex]="i"
-            (onDropSuccess)="onChangeSort()"
-            >
-                <input [(ngModel)]="candidate.enabled" type="checkbox" (ngModelChange)="onChangeSort()"/>
-                {{candidate.candidate.name}}
-            </li>
-        </ul>
+        <button class="delete" (click)="deleteVote(vote)">x</button>
+        <h3>Electeurs - {{vote.name}} </h3>
+        <div><label>nom : </label><input [(ngModel)]="vote.name" /></div>
+        <div>nombre : <input [(ngModel)]="vote.quantity" (ngModelChange)="onChangeSort()" /></div>
+
+        <div *ngFor="let rank of vote.ranking;let rankVal=index">
+            <div  class='rank' dnd-sortable-container [sortableData]="rank.candidates" [dropZones]="[index]">
+                 #{{rankVal+1}}
+                <ul class="candidatevote">
+                    <li *ngFor="let candidate of rank.candidates; let i = index"
+                    dnd-sortable
+                    [sortableIndex]="i"
+                    (onDropSuccess)="onChangeSort()"
+                    >
+                        {{candidate.name}}
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 <h2>Le Classement</h2>
-<div  >
+<div>
     <ul>
         <li *ngFor="let result of simulation.results" >{{result.score}} <b>{{result.candidate.name}}</b>
             <span *ngFor="let looser of result.winAgainst;let last = last;let first = first">
                 <span *ngIf="first">(</span> <u>{{looser.name}}</u> <span *ngIf="!last">, </span> <span *ngIf="last">)</span></span>
         </li>
     </ul>
-<div>
+</div>
 
 <h2>Détails des duels</h2>
 <div >
