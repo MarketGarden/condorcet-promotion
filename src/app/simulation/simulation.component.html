@@ -1,102 +1,100 @@
 <div class="part intro">
-    <h1>Election Condorcet</h1>
+    <h1>Élection Condorcet</h1>
     <h2>Intro</h2>
     <p>
-        Vous voulez repeindre le portes de la co-propriété en rose, mais vous vous sentez minoritaire, vous apprennez que des voisins commence à se mettre d'accord sur le bleu!
-        Mais en faite vous préférez largement le violet au bleu! Et donc vous finissez par abondonner le vote du rose au profit du violet!
-        Mais finalement si je n'aviez pas écouté aux portes je me serai retrouvé avec du bleu que je deteste! Bref le constat est singlant, le vote utile est une construction hasardeuse du conscensus qui se constitue en-dehors de l'organisation des élections.
-        Et s'ajoute que ce n'est pas très agréable  de voter en fonction des autres!
+        Vous voulez repeindre les portes de la co-propriété en rose, mais vous vous sentez minoritaire, vous apprenez que des voisins
+        commencent à se mettre d'accord sur le bleu ! Mais en fait, vous préférez largement le violet au bleu ! Et donc vous
+        finissez par abandonner le vote du rose au profit du violet ! Mais finalement, si je n'avais pas écouté aux portes,
+        je me serai retrouvé avec du bleu que je déteste ! Bref le constat est cinglant, le vote utile est une construction
+        hasardeuse du consensus qui se constitue en-dehors de l'organisation des élections. Et j'ajoute que ce n'est pas
+        très agréable de voter en fonction des autres !
     </p>
     <p>
-        Cette page est un simulateur du "vote par préférences" théorisé par Condorcet. Ce système de vote permet une pleine expression des candidats et des électeurs:
-        </p>
-        <ul>
-            <li>Le nombre des candidats n'influe pas sur le résultat.</li>
-            <li>Les électeurs peuvent donner leur avis sur l'ensemble des candidats.</li>
-            <li>Le tout avec en seul tour de vote.</li>
-        </ul>
+        Cette page est un démonstration du "vote par préférences" théorisé par Condorcet. Ce système de vote permet une pleine expression
+        des candidats et des électeurs :
+    </p>
+    <ul>
+        <li>Le nombre d'alternetives n'influe pas sur le résultat.</li>
+        <li>Les électeurs peuvent donner leur avis sur l'ensemble des candidats.</li>
+        <li>Le tout en seul tour de vote.</li>
+    </ul>
     <p>
-        Ci-dessous vous allez pouvoir manipuler les votes de plusieurs groupes de personnes pour constater l'influence sur le résultat de l'élection.
-        Vous pouvez gardez les données en copiant <a href="{{permanentLink}}">le lien permanent</a> contenant l'ensemble de vos données saisies.
-        <span>Notez que rafraichir la page (F5) annulera les dernières modifications.</span>
+        Ci-dessous vous allez pouvoir manipuler les votes de plusieurs groupes de personnes pour constater l'influence sur le résultat
+        de l'élection. Vous pouvez garder les données en copiant <a href="{{permanentLink}}">le lien permanent</a> contenant l'ensemble de vos données saisies.
+        <span>Notez que rafraîchir la page (F5) annulera les dernières modifications.</span>
     </p>
 </div>
 
 <div class="part candidates">
-<h2>{{simulation.elections.name}}</h2>
-<p>
-    Le nom de la simulation : <input appElastischInput [(ngModel)]="simulation.elections.name" />
-<p>
+    <h2>{{simulation.elections.name}}</h2>
+    <p>
+        Le nom de la simulation : <input appElastischInput [(ngModel)]="simulation.elections.name" />
+    </p>
 
- <p><button (click)="onAddCandidate()">Ajouter choix</button></p>
-    
-        <div class="candidate" *ngFor="let candidate of simulation.elections.candidates;">
-            <input [(ngModel)]="candidate.name" appElastischInput />
-            <button (click)="deleteCandidate(candidate)">x</button>
-        </div>
-</div>    
+
+    <p><button (click)="onAddCandidate()">Ajouter choix</button></p>
+
+    <div class="candidate" *ngFor="let candidate of simulation.elections.candidates;">
+        <input [(ngModel)]="candidate.name" appElastischInput />
+        <button (click)="deleteCandidate(candidate)">x</button>
+    </div>
+</div>
 
 <div class="part votes">
-<h2>Les votes</h2>
-<p>Avec un glisser/déposer vous pouvez trier par ordre de préférence les choix de chaque groupe d'électeur.</p>
+    <h2>Les votes</h2>
+    <p>Avec un glisser/déposer vous pouvez trier par ordre de préférence les choix de chaque groupe d'électeur.</p>
+    <button (click)="onAddVote()">Ajouter groupe de vote</button>
+    <div>
+        <div class="vote" *ngFor="let vote of simulation.votes;let index=index">
+            <button class="delete" (click)="deleteVote(vote)">x</button>
+            <h3>{{vote.name}} </h3>
+            <div><label>nom : </label><input [(ngModel)]="vote.name" /></div>
+            <div>nombre : <input [(ngModel)]="vote.quantity" (ngModelChange)="onChangeSort()" type="number" /></div>
 
-
-<button (click)="onAddVote()">Ajouter groupe de vote</button>
-<div>
-    <div class="vote" *ngFor="let vote of simulation.votes;let index=index">
-        <button class="delete" (click)="deleteVote(vote)">x</button>
-        <h3>{{vote.name}} </h3>
-        <div><label>nom : </label><input [(ngModel)]="vote.name" /></div>
-        <div>nombre : <input [(ngModel)]="vote.quantity" (ngModelChange)="onChangeSort()" type="number" /></div>
-
-        <div *ngFor="let rank of vote.ranking;let rankVal=index">
-            <div  class='rank' dnd-sortable-container [sortableData]="rank.candidates" [dropZones]="[index]">
-                <span style="color:gray;padding:0.3em">#{{rankVal+1}}</span>
-                <ul class="candidatevote">
-                    <li *ngFor="let candidate of rank.candidates; let i = index"
-                    dnd-sortable
-                    [sortableIndex]="i"
-                    (onDropSuccess)="onChangeSort()"
-                    >
-                        {{candidate.name}}
-                    </li>
-                </ul>
+            <div *ngFor="let rank of vote.ranking;let rankVal=index">
+                <div class='rank' dnd-sortable-container [sortableData]="rank.candidates" [dropZones]="[index]">
+                    <span style="color:gray;padding:0.3em">#{{rankVal+1}}</span>
+                    <ul class="candidatevote">
+                        <li *ngFor="let candidate of rank.candidates; let i = index" dnd-sortable [sortableIndex]="i" (onDropSuccess)="onChangeSort()">
+                            {{candidate.name}}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
 <div class="part">
-<h2>Dépouillement des votes</h2>
-<div >
-    <p>Le dépouillement consiste à compter les préférences deux par deux.</p>
-    <ul>
-        <li *ngFor="let duel of simulation.duels" >
-            <span [ngClass]="{'win': duel.ticWin, 'loose': duel.tacWin}">{{duel.tic.name}} - {{duel.ticScore}}</span> / 
-            <span [ngClass]="{'win': duel.tacWin, 'loose': duel.ticWin}">{{duel.tacScore}} - {{duel.tac.name}}</span>
-            
-        </li>
-    </ul>
-</div>
+    <h2>Dépouillement des votes</h2>
+    <div>
+        <p>Le dépouillement consiste à compter les préférences deux par deux.</p>
+        <ul>
+            <li *ngFor="let duel of simulation.duels">
+                <span [ngClass]="{'win': duel.ticWin, 'loose': duel.tacWin}">{{duel.tic.name}} - {{duel.ticScore}}</span>                /
+                <span [ngClass]="{'win': duel.tacWin, 'loose': duel.ticWin}">{{duel.tacScore}} - {{duel.tac.name}}</span>
+
+            </li>
+        </ul>
+    </div>
 </div>
 <div class='part result'>
-<h2>Le Resultat</h2>
-<div>
-    <p>Les choix sont classés par nombre de duel gagné :</p>
-    <ul>
-        <li *ngFor="let result of simulation.results" >{{result.score}} <b>{{result.candidate.name}}</b>
-            <span *ngFor="let looser of result.winAgainst;let last = last;let first = first">
-                <span *ngIf="first">(</span> <u>{{looser.name}}</u> <span *ngIf="!last">, </span> <span *ngIf="last">)</span></span>
-        </li>
-    </ul>
-    <p>Il existe des solutions en cas d'égalité pour résoudre le vote - non mise en place par le simulateur.</p>
-</div>
+    <h2>Le Resultat</h2>
+    <div>
+        <p>Les choix sont classés par nombre de duels gagnés :</p>
+        <ul>
+            <li *ngFor="let result of simulation.results">{{result.score}} <b>{{result.candidate.name}}</b>
+                <span *ngFor="let looser of result.winAgainst;let last = last;let first = first">
+                <span *ngIf="first">(</span>
+                <u>{{looser.name}}</u> <span *ngIf="!last">, </span> <span *ngIf="last">)</span></span>
+            </li>
+        </ul>
+        <p>Il existe des solutions en cas d'égalité pour résoudre le vote - elles ne sont pas mises en place par le simulateur.</p>
+    </div>
 </div>
 
 <div class="foot">
     <p>
-        <a href="{{permanentLink}}">le lien permanent</a> /// 
-         Classement : 
-        <span *ngFor="let result of simulation.results;let last = last" > <b>{{result.candidate.name}}</b>({{result.score}})<span *ngIf="!last"> / </span></span>
+        <a href="{{permanentLink}}">le lien permanent</a> /// Classement :
+        <span *ngFor="let result of simulation.results;let last = last"> <b>{{result.candidate.name}}</b>({{result.score}})<span *ngIf="!last"> / </span></span>
     </p>
 </div>
