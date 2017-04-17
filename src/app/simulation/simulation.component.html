@@ -2,16 +2,12 @@
     <h1>Élection Condorcet</h1>
     <h2>Intro</h2>
     <p>
-        Vous voulez repeindre les portes de la co-propriété en rose, mais vous vous sentez minoritaire, vous apprenez que des voisins
-        commencent à se mettre d'accord sur le bleu ! Mais en fait, vous préférez largement le violet au bleu ! Et donc vous
-        finissez par abandonner le vote du rose au profit du violet ! Mais finalement, si je n'avais pas écouté aux portes,
-        je me serai retrouvé avec du bleu que je déteste ! Bref le constat est cinglant, le vote utile est une construction
-        hasardeuse du consensus qui se constitue en-dehors de l'organisation des élections. Et j'ajoute que ce n'est pas
-        très agréable de voter en fonction des autres !
+        Vous voulez repeindre les portes de la co-propriété en rose, mais vous vous sentez minoritaire, vous apprenez que des voisins commencent à se mettre d'accord sur le bleu ! Mais en fait, vous préférez largement le violet au bleu ! Et donc vous finissez
+        par abandonner le vote du rose au profit du violet ! Mais finalement, si je n'avais pas écouté aux portes, je me serai retrouvé avec du bleu que je déteste ! Bref le constat est cinglant, le vote utile est une construction hasardeuse du consensus
+        qui se constitue en-dehors de l'organisation des élections. Et j'ajoute que ce n'est pas très agréable de voter en fonction des autres !
     </p>
     <p>
-        Cette page est un démonstration du "vote par préférences" théorisé par Condorcet. Ce système de vote permet une pleine expression
-        des candidats et des électeurs :
+        Cette page est un démonstration du "vote par préférences" théorisé par Condorcet. Ce système de vote permet une pleine expression des candidats et des électeurs :
     </p>
     <ul>
         <li>Le nombre d'alternetives n'influe pas sur le résultat.</li>
@@ -19,8 +15,8 @@
         <li>Le tout en seul tour de vote.</li>
     </ul>
     <p>
-        Ci-dessous vous allez pouvoir manipuler les votes de plusieurs groupes de personnes pour constater l'influence sur le résultat
-        de l'élection. Vous pouvez garder les données en copiant <a href="{{permanentLink}}">le lien permanent</a> contenant l'ensemble de vos données saisies.
+        Ci-dessous vous allez pouvoir manipuler les votes de plusieurs groupes de personnes pour constater l'influence sur le résultat de l'élection. Vous pouvez garder les données en copiant <a href="{{permanentLink}}">le lien permanent</a> contenant
+        l'ensemble de vos données saisies.
         <span>Notez que rafraîchir la page (F5) annulera les dernières modifications.</span>
     </p>
 </div>
@@ -70,7 +66,7 @@
         <p>Le dépouillement consiste à compter les préférences deux par deux.</p>
         <ul>
             <li *ngFor="let duel of simulation.duels">
-                <span [ngClass]="{'win': duel.ticWin, 'loose': duel.tacWin}">{{duel.tic.name}} - {{duel.ticScore}}</span>                /
+                <span [ngClass]="{'win': duel.ticWin, 'loose': duel.tacWin}">{{duel.tic.name}} - {{duel.ticScore}}</span> /
                 <span [ngClass]="{'win': duel.tacWin, 'loose': duel.ticWin}">{{duel.tacScore}} - {{duel.tac.name}}</span>
 
             </li>
