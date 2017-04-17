@@ -38,11 +38,9 @@ export class SimulationComponent implements OnInit {
   public onAddVote() : void{
     this.simulation.addVote("Electeurs " + (this.simulation.votes.length+1));
   }
-
-
-
+  
   public onAddCandidate(){
-    this.simulation.addCandidate("Candidat " + (this.simulation.elections.candidates.length+1));
+    this.simulation.addCandidate("Choix " + (this.simulation.elections.candidates.length+1));
   }
 
   public onChangeSort() : void{

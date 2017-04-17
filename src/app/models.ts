@@ -205,8 +205,8 @@ export class Simulation {
         let winAgainst : Array<Candidate>= duels.Where(x=> x.winnerIfExist == result.candidate).Select( x=>x.looserIfExist).ToArray();
         result.winAgainst.push(...winAgainst);
     }
-
-    //this.results.sort(x=> x.score);
+    
+    this.results.sort((x,y)=> y.score -x.score);
   }
 
   public deleteCandidate(candidate: Candidate) : void {

@@ -4,6 +4,8 @@
   padding: 3mm;
   margin: 3mm;
   position:relative;
+  border: 0.1em solid black;
+  border-radius:0.1em; 
 }
 
 .candidate {
@@ -13,6 +15,8 @@
     margin: 3mm;
     position:relative;
     padding-right: 10mm;
+      border: 0.1em solid black;
+  border-radius:0.1em; 
 }
 
 
@@ -46,4 +50,20 @@ ul.candidatevote{
 .rank{
     min-height: 5mm;
     border: black solid 0.1mm;
+}
+
+div.part{
+    padding: 1em;
+}
+
+div.part.intro{
+    background:#d5ffa3;
+}
+
+div.part.votes{
+    background:#a3ffd8;
+}
+
+div.part.result{
+    background:#a3c6ff;
 }
