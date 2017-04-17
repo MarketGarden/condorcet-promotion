@@ -110,6 +110,7 @@ export class SimulationComponent implements OnInit {
           rank.candidates = updated;
         }
         newvote.ranking = vote.ranking;
+        newvote.quantity = vote.quantity;
         newvotes.push(newvote);
       }
       json.votes = newvotes;

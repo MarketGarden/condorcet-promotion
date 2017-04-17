@@ -3,9 +3,8 @@
 ## Online Simulator released to GitHubpage
 
 Watch the Web UI :
-[Condorcet Simulator](https://marketgarden.github.io/condorcet-promotion/)
+[Condorcet Simulator](https://marketgarden.github.io/condorcet-promotion/#json-raw-{"election"%3A{"name"%3A"La couleur des portes de la copro!"%2C"candidates"%3A[{"name"%3A"Rose"}%2C{"name"%3A"Bleu"}%2C{"name"%3A"Violet"}]}%2C"votes"%3A[{"name"%3A"Les fan de rose"%2C"quantity"%3A5%2C"ranking"%3A[{"candidates"%3A[{"name"%3A"Rose"}]%2C"rank"%3A0}%2C{"candidates"%3A[{"name"%3A"Violet"}]%2C"rank"%3A1}%2C{"candidates"%3A[{"name"%3A"Bleu"}]%2C"rank"%3A2}]}%2C{"name"%3A"Les fans de bleu"%2C"quantity"%3A10%2C"ranking"%3A[{"candidates"%3A[{"name"%3A"Bleu"}]%2C"rank"%3A0}%2C{"candidates"%3A[{"name"%3A"Violet"}]%2C"rank"%3A1}%2C{"candidates"%3A[{"name"%3A"Rose"}]%2C"rank"%3A2}]}%2C{"name"%3A"Les fans violets"%2C"quantity"%3A6%2C"ranking"%3A[{"candidates"%3A[{"name"%3A"Violet"}]%2C"rank"%3A0}%2C{"candidates"%3A[{"name"%3A"Rose"}]%2C"rank"%3A1}%2C{"candidates"%3A[{"name"%3A"Bleu"}]%2C"rank"%3A2}]}%2C{"name"%3A"Les votes blanc"%2C"quantity"%3A10%2C"ranking"%3A[{"candidates"%3A[]%2C"rank"%3A0}%2C{"candidates"%3A[]%2C"rank"%3A1}%2C{"candidates"%3A[{"name"%3A"Bleu"}%2C{"name"%3A"Violet"}%2C{"name"%3A"Rose"}]%2C"rank"%3A2}]}]})
 
-Test with a permanent link [Election Présidentielle 2017](https://marketgarden.github.io/condorcet-promotion/#json-raw-%7B%22election%22%3A%7B%22name%22%3A%22Election%20pr%C3%A9sidentielle%202017%22%2C%22candidates%22%3A%5B%7B%22name%22%3A%22Fran%C3%A7ois%20Fillon%22%7D%2C%7B%22name%22%3A%22Beno%C3%AEt%20Hamon%22%7D%2C%7B%22name%22%3A%22Emmanuel%20Macron%22%7D%2C%7B%22name%22%3A%22Marine%20Le%20Pen%22%7D%2C%7B%22name%22%3A%22Jean%20Luc%20Melenchon%22%7D%2C%7B%22name%22%3A%22Jacques%20Cheminade%22%7D%2C%7B%22name%22%3A%22Jean%20Lassalle%22%7D%2C%7B%22name%22%3A%22Nathalie%20Arthaud%22%7D%2C%7B%22name%22%3A%22Philippe%20Poutou%22%7D%2C%7B%22name%22%3A%22Fran%C3%A7ois%20Asselineau%22%7D%2C%7B%22name%22%3A%22Nicolas%20Dupont%20Aignan%22%7D%5D%7D%2C%22votes%22%3A%5B%5D%7D)
 
 # Developement with Angular
 

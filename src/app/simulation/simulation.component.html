@@ -31,7 +31,8 @@
  <p><button (click)="onAddCandidate()">Ajouter choix</button></p>
     
         <div class="candidate" *ngFor="let candidate of simulation.elections.candidates;">
-            <input [(ngModel)]="candidate.name" appElastischInput /><button class="delete" (click)="deleteCandidate(candidate)">x</button>
+            <input [(ngModel)]="candidate.name" appElastischInput />
+            <button (click)="deleteCandidate(candidate)">x</button>
         </div>
 </div>    
 
@@ -46,11 +47,11 @@
         <button class="delete" (click)="deleteVote(vote)">x</button>
         <h3>{{vote.name}} </h3>
         <div><label>nom : </label><input [(ngModel)]="vote.name" /></div>
-        <div>nombre : <input [(ngModel)]="vote.quantity" (ngModelChange)="onChangeSort()" /></div>
+        <div>nombre : <input [(ngModel)]="vote.quantity" (ngModelChange)="onChangeSort()" type="number" /></div>
 
         <div *ngFor="let rank of vote.ranking;let rankVal=index">
             <div  class='rank' dnd-sortable-container [sortableData]="rank.candidates" [dropZones]="[index]">
-                 #{{rankVal+1}}
+                <span style="color:gray;padding:0.3em">#{{rankVal+1}}</span>
                 <ul class="candidatevote">
                     <li *ngFor="let candidate of rank.candidates; let i = index"
                     dnd-sortable
@@ -65,7 +66,7 @@
     </div>
 </div>
 </div>
-
+<div class="part">
 <h2>Dépouillement des votes</h2>
 <div >
     <p>Le dépouillement consiste à compter les préférences deux par deux.</p>
@@ -76,6 +77,7 @@
             
         </li>
     </ul>
+</div>
 </div>
 <div class='part result'>
 <h2>Le Resultat</h2>
@@ -89,4 +91,12 @@
     </ul>
     <p>Il existe des solutions en cas d'égalité pour résoudre le vote - non mise en place par le simulateur.</p>
 </div>
+</div>
+
+<div class="foot">
+    <p>
+        <a href="{{permanentLink}}">le lien permanent</a> /// 
+         Classement : 
+        <span *ngFor="let result of simulation.results;let last = last" > <b>{{result.candidate.name}}</b>({{result.score}})<span *ngIf="!last"> / </span></span>
+    </p>
 </div>

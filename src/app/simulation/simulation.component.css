@@ -1,22 +1,23 @@
 .vote {
   display: inline-block;
+  vertical-align:top;
   background: ghostwhite;
   padding: 3mm;
   margin: 3mm;
   position:relative;
-  border: 0.1em solid black;
+  border: 0.1em solid gray;
   border-radius:0.1em; 
 }
 
 .candidate {
     background: ghostwhite;
-    padding: 3mm;
+    padding: 0.3em;
     display: inline-block;
-    margin: 3mm;
+    vertical-align:top;
+    margin: 0.2em;
     position:relative;
-    padding-right: 10mm;
-      border: 0.1em solid black;
-  border-radius:0.1em; 
+    border: 0.1em solid gray;
+    border-radius:0.1em; 
 }
 
 
@@ -27,11 +28,15 @@ ul.candidatevote{
 }
 
 .candidatevote li{
-    background: gray;
+    background: white;
     padding: 1mm;
     margin: 1mm;
     margin-bottom:0; 
     color: black;
+
+    padding-left:0.4em; 
+    border: solid 0.1em black; 
+    border-left: solid 1em black; 
 }
 
 .win { font-weight: bold}
@@ -48,8 +53,10 @@ ul.candidatevote{
 }
 
 .rank{
-    min-height: 5mm;
-    border: black solid 0.1mm;
+    /* border: black solid 0.1mm;*/
+    margin: 0.2em;
+    background: ghostwhite;
+    border : gray 0.1em dashed;
 }
 
 div.part{
@@ -66,4 +73,20 @@ div.part.votes{
 
 div.part.result{
     background:#a3c6ff;
+    padding-bottom: 5em; 
+}
+
+div.foot{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    background: white;
+    border-top: 0.01em dashed black;
+    color: 0;
+    opacity: 0.9;
+    padding: 0em;
+    padding-left: 1em;
+    font-size: 0.5em; 
 }
