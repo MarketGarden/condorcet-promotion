@@ -3,7 +3,7 @@
 ## Online Simulator released to GitHubpage
 
 Watch the Web UI :
-[Condorcet Simulator](https://marketgarden.github.io/condorcet-promotion/#json-raw-{"election"%3A{"name"%3A"La couleur des portes de la copro!"%2C"candidates"%3A[{"name"%3A"Rose"}%2C{"name"%3A"Bleu"}%2C{"name"%3A"Violet"}]}%2C"votes"%3A[{"name"%3A"Les fan de rose"%2C"quantity"%3A5%2C"ranking"%3A[{"candidates"%3A[{"name"%3A"Rose"}]%2C"rank"%3A0}%2C{"candidates"%3A[{"name"%3A"Violet"}]%2C"rank"%3A1}%2C{"candidates"%3A[{"name"%3A"Bleu"}]%2C"rank"%3A2}]}%2C{"name"%3A"Les fans de bleu"%2C"quantity"%3A10%2C"ranking"%3A[{"candidates"%3A[{"name"%3A"Bleu"}]%2C"rank"%3A0}%2C{"candidates"%3A[{"name"%3A"Violet"}]%2C"rank"%3A1}%2C{"candidates"%3A[{"name"%3A"Rose"}]%2C"rank"%3A2}]}%2C{"name"%3A"Les fans violets"%2C"quantity"%3A6%2C"ranking"%3A[{"candidates"%3A[{"name"%3A"Violet"}]%2C"rank"%3A0}%2C{"candidates"%3A[{"name"%3A"Rose"}]%2C"rank"%3A1}%2C{"candidates"%3A[{"name"%3A"Bleu"}]%2C"rank"%3A2}]}%2C{"name"%3A"Les votes blanc"%2C"quantity"%3A10%2C"ranking"%3A[{"candidates"%3A[]%2C"rank"%3A0}%2C{"candidates"%3A[]%2C"rank"%3A1}%2C{"candidates"%3A[{"name"%3A"Bleu"}%2C{"name"%3A"Violet"}%2C{"name"%3A"Rose"}]%2C"rank"%3A2}]}]})
+[Condorcet Simulator](https://marketgarden.github.io/condorcet-promotion/)
 
 
 # Developement with Angular
